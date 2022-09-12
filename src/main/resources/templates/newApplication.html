@@ -1,0 +1,76 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+  <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+
+<div class="container-fluid">
+  <div class=" text-center ">
+    <h1>[[${pageTitle}]] </h1>
+  </div>
+
+  <form th:action="@{/form-user/save}"  method="post" th:object="${applications}"
+     style="max-width: 500px; margin: 0 auto;">
+    <div class="border border-secondary rounded p-3">
+
+      <div class="form-group row">
+        <label CLASS="col-sm-4 col-form-label">Ονομα</label>
+        <div class="col-sm-8">
+          <input type="text" th:field="*{firstName}" class="form-control" required minlength="2" maxlength="15" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label CLASS="col-sm-4 col-form-label">Επιθετο</label>
+        <div class="col-sm-8">
+          <input type="text" th:field="*{lastName}" class="form-control" required minlength="2" maxlength="15"/>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label CLASS="col-sm-4 col-form-label">Στρατολογικός Αριθμός</label>
+        <div class="col-sm-8">
+          <input type="number" th:field="*{id}" class="form-control" required minlength="4" maxlength="15"/>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label CLASS="col-sm-4 col-form-label">ΕΜΑΙΛ</label>
+        <div class="col-sm-8">
+          <input type="email" th:field="*{email}" class="form-control" required minlength="8" maxlength="15" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label CLASS="col-sm-4 col-form-label">Eγγραφο που να τεκμηριώνει το λόγο της αναβολής.</label>
+        <div class="col-sm-8">
+          <br>
+          <br>
+          <input type="file" th:field="*{data}"  name="fileToUpload" id="fileToUpload" required>
+          <br>
+          <br>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary m-2">SUBMIT</button>
+        <button type="button" class="btn btn-primary m-2" onclick="goHome()">CANCEL</button>
+      </div>
+
+    </div>
+  </form>
+
+
+</div>
+<script>
+  function goHome(){
+    window.location = "[[@{/home}]]";
+  }
+</script>
+<!-- /.container -->
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>

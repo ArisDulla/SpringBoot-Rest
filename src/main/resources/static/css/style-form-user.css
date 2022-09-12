@@ -1,0 +1,89 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Universal Styles & Utility classes */
+body{
+    font-family: 'Catamaran', sans-serif;
+    font-weight: 200;
+    color: rgb(99,98,95);
+}
+
+.padded {
+    padding: 5%;
+}
+
+.right {
+    text-align: right;
+}
+a {
+    display: inline-block;
+    color: rgb(99,98,95);
+    text-decoration: none;
+}
+
+a:hover{
+    color: #1E4969;
+}
+
+h1{
+    color: #133751;
+    font-size: 2rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    color: #1E4969;
+    font-size: 1.5rem;
+    line-height: 1.1;
+    margin: 1rem 0rem;
+}
+
+
+/* Form */
+form input, form textarea{
+    padding: 0.5rem;
+    margin-bottom: 0.7rem;
+    min-width: 100%;
+    outline: none;
+    border: none;
+    background-color: rgb(230,230,230);
+    border-bottom: 1px solid #1E4969;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+form input:focus {
+    border-bottom: 1px solid #1E4969;
+}
+
+form label {
+    display: block;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-top: 1rem;
+}
+
+form button {
+    border: 2px solid #1E4969;
+    color: #1E4969;
+    background-color: white;
+    padding: 0.5rem 2rem;
+    align-items: right;
+    margin: 2rem 0rem;
+}
+
+form button:hover {
+    border: 2px solid white;
+    color: white;
+    background-color: #1E4969;
+}
+
+.form-file {
+    background-color: white;
+    border: none;
+    padding: 0.5rem 0;
+}

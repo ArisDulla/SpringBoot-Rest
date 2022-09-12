@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+
+  <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+<div class="container text-center">
+  <div>
+    <h1>User Registration - Sign Up</h1>
+  </div>
+  <form th:action="@{/process_register}" th:object="${user}"
+        method="post" style="max-width: 600px; margin: 0 auto;">
+    <div class="m-3">
+      <div class="form-group row">
+        <label class="col-4 col-form-label">E-mail: </label>
+        <div class="col-8">
+          <input type="text" th:field="*{username}" class="form-control" required />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-4 col-form-label">Password: </label>
+        <div class="col-8">
+          <input type="password" th:field="*{password}" class="form-control"
+                 required minlength="6" maxlength="10"/>
+        </div>
+
+        <br>
+        <br>
+        <br>
+          <div class="form-group row">
+            <label CLASS="col-sm-4 col-form-label">Enabled</label>
+            <div class="col-sm-8">
+              <input type="checkbox" th:field="*{enabled}"  />
+            </div>
+          </div>
+
+      </div>
+      <input type="radio" name="tt" value="ADMIN" onclick="doDisplay(this);" />ADMIN<br/>
+      <br>
+      <input type="radio" name="tt" value="ROLE_USER__A__Politis" onclick="doDisplay(this);" />ROLE_USER_A_Politis<br/>
+      <br>
+      <input type="radio" name="tt" value="ROLE_USER__B__Ypallilos" onclick="doDisplay(this);" />ROLE_USER__B__Ypallilos<br/>
+      <br>
+      <input type="radio" name="tt" value="ROLE_USER__C__Axiomatikos" onclick="doDisplay(this);" />ROLE_USER__C__Axiomatikos<br/>
+
+      <div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>

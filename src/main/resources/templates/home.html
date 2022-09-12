@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+    <link rel="stylesheet" href="css/style-home.css">
+
+</head>
+
+
+<body>
+<div th:replace="fragments/header :: header"/>
+<br>
+<br>
+<div th:if="${message}" class="alert alert-success text-center">
+
+    [[${message}]]
+
+</div>
+<div class="form">
+
+        <div class="input-box" id="buttons">
+
+            <span sec:authorize="isAnonymous()" >
+            <a href="/login"  class="btn">ΣΤΡΑΤΟΛΟΓΙΑ LOG IN </a>
+            </span>
+            <span sec:authorize="isAuthenticated()" >
+             <a href="/logout"  class="btn"> LOG OUT </a>
+            </span>
+
+            <br>
+            <a href="/about" class="btn">Ωραριο Λειτουργιασ</a>
+            <br>
+            <a href="/about" class="btn">Eπικοινωνια</a>
+
+        </div>
+</div>
+
+<div th:if="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')')}">
+    <div class="form3">
+        <h1> ADMIN COMMANDS </h1>
+        <a href="/users" class="btn">Επικύρωση αίτησης </a>
+    </div>
+    <div class="form3" >
+        <a href="/signup_form" class="btn">USER REGISTRATION</a>
+        <a href="/allUsers" class="btn"> ALL USERS</a>
+        <a href="/newApplication" class="btn">ΑΙΤΗΣΗ Αναβολής</a>
+        <a href="/allApplications" class="btn">ΟΛΕΣ ΑΙΤΗΣΕΙΣ</a>
+
+
+    </div>
+</div>
+
+<div th:if="${#authorization.expression('hasAuthority(''ROLE_USER_A_Politis'')')}">
+
+    <div class="form3" >
+        <h1 align="left" >ΑΙΤΗΣΕΙΣ</h1>
+        <a href="/newApplication" class="btn">ΑΙΤΗΣΗ Αναβολής στράτευσης</a>
+        <a href="/allApplications" class="btn">ΠΡΟΒΟΛΗ ΚΑΤΑΣΤΑΣΗΣ </a>
+    </div>
+</div>
+
+<div th:if="${#authorization.expression('hasAuthority(''ROLE_USER_B_Ypallilos'')')}">
+
+    <div class="form3" >
+        <h1 align="left" > ΛΕΙΤΟΥΡΓΙΕΣ ΥΠΑΛΛΗΛΟΥ  </h1>
+        <a href="/allApplications" class="btn">ΕΠΙΚΥΡΩΣΗ ΤΩΝ ΑΙΤΗΣΕΩΝ</a>
+    </div>
+</div>
+
+<div th:if="${#authorization.expression('hasAuthority(''ROLE_USER_C_Axiomatikos'')')}">
+
+    <div class="form3" >
+        <h1 align="left" >ΛΕΙΤΟΥΡΓΙΕΣ ΑΞΙΩΜΑΤΙΚΟΥ</h1>
+        <a href="/allApplications" class="btn"> ΕΓΚΡΙΣΗ ΤΩΝ ΑΙΤΗΣΕΩΝ</a>
+    </div>
+</div>
+
+
+</div>
+
+<div th:if="${#authorization.expression('isAuthenticated()')}">
+    <div class="form2">
+        <h1> INFO USER </h1>
+        <br><br>
+        <p align="left">| Logged user: <span sec:authentication="name">  </span> <br><br> Roles:<span sec:authentication="principal.authorities"></span>
+
+    </div>
+
+</div>
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+
+<script>
+    $('#message').html('first');
+    setTimeout(function(){$('#message1').html('second')}, 3000);
+</script>
+
+</body>
+
+</html>

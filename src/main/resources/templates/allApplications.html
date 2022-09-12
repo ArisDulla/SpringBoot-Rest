@@ -1,0 +1,90 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:fragment="header-css">
+        <!-- this is header-css -->
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    </div>
+    <div th:replace="fragments/header :: header-css"/>
+<style>
+    a {
+        color: blue;
+    }
+</style>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+<div class="container-fluid text-center">
+<div>
+    <h1> ΑΙΤΗΣΕΙΣ </h1>
+</div>
+
+    <div class="m-2">
+
+        <a  class="h3" th:href="@{/newApplication}">ADD NEW</a>
+
+    </div>
+
+    <div th:if="${message}" class="alert alert-success text-center">
+
+        [[${message}]]
+
+    </div>
+
+<div>
+    <table class="table table-bordered">
+
+    <thaed class="thead-dark">
+    <tr>
+        <th> ID</th>
+        <th> NAME</th>
+        <th> LAST</th>
+        <th> EMAIL</th>
+        <th> FILE </th>
+        <th> ΕΠΙΚΥΡΩΣΗ == TRUE </th>
+        <th> ΕΓΚΡΙΣΗ == TRUE </th>
+
+    </tr>
+    </thaed>
+
+        <tbody>
+ <th:block th:each="user : ${listApplications}">
+     <tr>
+         <td>[[${user.id} ]]</td>
+         <td>[[${user.firstName} ]]</td>
+         <td>[[${user.lastName} ]]</td>
+         <td>[[${user.email} ]]</td>
+         <td><a th:href="@{'/download?id=' + ${user.id}}">[[${user.data}]]</a></td>
+         <td>[[${user.enabled} ]]</td>
+         <td>[[${user.enabled2} ]]</td>
+
+
+         <td >
+             <div th:if="${#authorization.expression('hasAuthority(''ROLE_USER_B_Ypallilos'')')}">
+
+                 <a  class="h4 mr-3"  th:href="@{'/allApplications/epikirosi/' + ${user.id}} ">ΕΠΙΚΥΡΩΣΗ</a>
+
+             </div>
+             <div th:if="${#authorization.expression('hasAuthority(''ROLE_USER_C_Axiomatikos'')')}">
+                 <a  class="h4 mr-3"  th:href="@{'/allApplications/egkrisi/' + ${user.id}} ">ΕΓΚΡΙΣΗ</a>
+             </div>
+
+         </td>
+     </tr>
+ </th:block>
+
+        </tbody>
+
+    </table>
+
+</div>
+</div>
+<br>
+<div th:if="${message}" class="alert alert-success text-center">
+<br>
+
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>
