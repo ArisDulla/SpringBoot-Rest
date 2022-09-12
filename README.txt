@@ -25,8 +25,8 @@ INSERT INTO `user` (`username`, `password`, `enabled`) VALUES
 INSERT INTO `authorities` (`username`, `authority`) VALUES
    ('root', 'ROLE_ADMIN'),
    ('aris', 'ROLE_USER_A_Politis'),
-   ('ypallilos23', 'ROLE_USER__B__Ypallilos'),
-   ('axiomatikos23', 'ROLE_USER__C__Axiomatikos');
+   ('ypallilos23', 'ROLE_USER_B_Ypallilos'),
+   ('axiomatikos23', 'ROLE_USER_C_Axiomatikos');
 
 
 LOCAL
