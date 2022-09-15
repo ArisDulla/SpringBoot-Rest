@@ -14,8 +14,19 @@
 
 </div>
 <!-- /.container -->
-
+<br>
+<br>
+<br>
+<div class="text-center">
+  <button type="button" class="btn btn-primary m-2" onclick="goHome()">BACK</button>
+</div>
 <div th:replace="fragments/footer :: footer"/>
+
+<script>
+  function goHome(){
+    window.location = "[[@{/home}]]";
+  }
+</script>
 
 </body>
 </html>

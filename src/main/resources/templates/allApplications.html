@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <div th:fragment="header-css">
         <!-- this is header-css -->
@@ -62,12 +62,10 @@
 
 
          <td >
-             <div th:if="${#authorization.expression('hasAuthority(''ROLE_USER_B_Ypallilos'')')}">
-
+             <div   sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER_B_Ypallilos')">
                  <a  class="h4 mr-3"  th:href="@{'/allApplications/epikirosi/' + ${user.id}} ">ΕΠΙΚΥΡΩΣΗ</a>
-
              </div>
-             <div th:if="${#authorization.expression('hasAuthority(''ROLE_USER_C_Axiomatikos'')')}">
+             <div   sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER_C_Axiomatikos')">
                  <a  class="h4 mr-3"  th:href="@{'/allApplications/egkrisi/' + ${user.id}} ">ΕΓΚΡΙΣΗ</a>
              </div>
 
@@ -80,11 +78,25 @@
     </table>
 
 </div>
-</div>
 <br>
 <div th:if="${message}" class="alert alert-success text-center">
 <br>
-
+</div>
+</div>
+<br>
+<br>
+<br>
+<div class="text-center">
+    <button type="button" class="btn btn-primary m-2" onclick="goHome()">BACK</button>
+</div>
 <div th:replace="fragments/footer :: footer"/>
+
+<script>
+    function goHome(){
+        window.location = "[[@{/home}]]";
+    }
+</script>
+
+
 </body>
 </html>

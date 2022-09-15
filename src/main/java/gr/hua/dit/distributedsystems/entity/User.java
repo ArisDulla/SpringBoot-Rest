@@ -50,10 +50,12 @@ public class User {
     public Collection<Authorities> getAuthorities() {return authorities;    }
 
     public void setAuthorities(Collection<Authorities> authorities) {
+
         this.authorities = authorities;
     }
 
     public void addAuthority(Authorities authority) {
+
         this.authorities.add(authority);
     }
 

@@ -7,16 +7,16 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"/>
-
+<title>[[${pageTitle}]]</title>
 <div class="container text-center">
   <div>
-    <h1>User Registration - Sign Up</h1>
+    <h1>[[${pageTitle}]]</h1>
   </div>
-  <form th:action="@{/process_register}" th:object="${user}"
+  <form th:action="@{/{path}(path=${link})}" th:object="${user}"
         method="post" style="max-width: 600px; margin: 0 auto;">
     <div class="m-3">
       <div class="form-group row">
-        <label class="col-4 col-form-label">E-mail: </label>
+        <label class="col-4 col-form-label">USERNAME: </label>
         <div class="col-8">
           <input type="text" th:field="*{username}" class="form-control" required />
         </div>
@@ -32,28 +32,31 @@
         <br>
         <br>
         <br>
-          <div class="form-group row">
-            <label CLASS="col-sm-4 col-form-label">Enabled</label>
-            <div class="col-sm-8">
-              <input type="checkbox" th:field="*{enabled}"  />
-            </div>
-          </div>
 
       </div>
-      <input type="radio" name="tt" value="ADMIN" onclick="doDisplay(this);" />ADMIN<br/>
+      <input type="radio" name="tt" value="ROLE_ADMIN"  onclick="doDisplay(this);" />  ADMIN<br/>
       <br>
-      <input type="radio" name="tt" value="ROLE_USER__A__Politis" onclick="doDisplay(this);" />ROLE_USER_A_Politis<br/>
+      <input type="radio" name="tt" value="ROLE_USER_A_Politis" onclick="doDisplay(this);" checked />  Politis<br/>
       <br>
-      <input type="radio" name="tt" value="ROLE_USER__B__Ypallilos" onclick="doDisplay(this);" />ROLE_USER__B__Ypallilos<br/>
+      <input type="radio" name="tt" value="ROLE_USER_B_Ypallilos" onclick="doDisplay(this);" />  Ypallilos<br/>
       <br>
-      <input type="radio" name="tt" value="ROLE_USER__C__Axiomatikos" onclick="doDisplay(this);" />ROLE_USER__C__Axiomatikos<br/>
-
+      <input type="radio" name="tt" value="ROLE_USER_C_Axiomatikos" onclick="doDisplay(this);" />  Axiomatikos<br/>
       <div>
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <br>
+        <br>
+        <div class="text-center">
+        <button type="submit" class="btn btn-primary">[[${info}]]</button>
+        <button type="button" class="btn btn-primary m-2" onclick="goHome()">CANCEL</button>
+        </div>
       </div>
     </div>
   </form>
 </div>
 <div th:replace="fragments/footer :: footer"/>
+<script>
+  function goHome(){
+    window.location = "[[@{/home}]]";
+  }
+</script>
 </body>
 </html>

@@ -16,13 +16,14 @@
 <body>
 <div th:replace="fragments/header :: header"/>
 <br>
-<br>
+</div>
 <div th:if="${message}" class="alert alert-success text-center">
 
     [[${message}]]
 
 </div>
-<div class="form">
+
+<div class="formHome">
 
         <div class="input-box" id="buttons">
 
@@ -41,51 +42,45 @@
         </div>
 </div>
 
-<div th:if="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')')}">
-    <div class="form3">
-        <h1> ADMIN COMMANDS </h1>
-        <a href="/users" class="btn">Επικύρωση αίτησης </a>
-    </div>
-    <div class="form3" >
-        <a href="/signup_form" class="btn">USER REGISTRATION</a>
-        <a href="/allUsers" class="btn"> ALL USERS</a>
-        <a href="/newApplication" class="btn">ΑΙΤΗΣΗ Αναβολής</a>
-        <a href="/allApplications" class="btn">ΟΛΕΣ ΑΙΤΗΣΕΙΣ</a>
-
-
-    </div>
-</div>
-
-<div th:if="${#authorization.expression('hasAuthority(''ROLE_USER_A_Politis'')')}">
-
-    <div class="form3" >
-        <h1 align="left" >ΑΙΤΗΣΕΙΣ</h1>
-        <a href="/newApplication" class="btn">ΑΙΤΗΣΗ Αναβολής στράτευσης</a>
-        <a href="/allApplications" class="btn">ΠΡΟΒΟΛΗ ΚΑΤΑΣΤΑΣΗΣ </a>
-    </div>
-</div>
-
-<div th:if="${#authorization.expression('hasAuthority(''ROLE_USER_B_Ypallilos'')')}">
-
-    <div class="form3" >
-        <h1 align="left" > ΛΕΙΤΟΥΡΓΙΕΣ ΥΠΑΛΛΗΛΟΥ  </h1>
-        <a href="/allApplications" class="btn">ΕΠΙΚΥΡΩΣΗ ΤΩΝ ΑΙΤΗΣΕΩΝ</a>
-    </div>
-</div>
-
-<div th:if="${#authorization.expression('hasAuthority(''ROLE_USER_C_Axiomatikos'')')}">
-
-    <div class="form3" >
-        <h1 align="left" >ΛΕΙΤΟΥΡΓΙΕΣ ΑΞΙΩΜΑΤΙΚΟΥ</h1>
-        <a href="/allApplications" class="btn"> ΕΓΚΡΙΣΗ ΤΩΝ ΑΙΤΗΣΕΩΝ</a>
-    </div>
-</div>
-
-
-</div>
 
 <div th:if="${#authorization.expression('isAuthenticated()')}">
-    <div class="form2">
+
+    <div class="form7" >
+
+
+        <div th:if="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')')}">
+            <h1> ADMIN COMMANDS </h1>
+            <a href="/signup_form" class="btn">USER REGISTRATION</a>
+            <a href="/allUsers" class="btn"> ALL USERS</a>
+            <a href="/allApplications" class="btn">ΟΛΕΣ ΑΙΤΗΣΕΙΣ</a>
+            <a href="/newApplication" class="btn">ΑΙΤΗΣΗ</a>
+        </div>
+
+        <div  sec:authorize="hasAnyRole( 'ROLE_USER_A_Politis')" >
+            <h1 align="left" >ΠΟΛΙΤΗΣ - ΑΙΤΗΣΕΙΣ</h1>
+            <a href="/newApplication" class="btn">ΑΙΤΗΣΗ Αναβολής στράτευσης</a>
+            <a href="/allApplications" class="btn">ΠΡΟΒΟΛΗ ΚΑΤΑΣΤΑΣΗΣ </a>
+        </div>
+
+        <div  sec:authorize="hasAnyRole( 'ROLE_USER_B_Ypallilos')" >
+            <h1 align="left" >ΥΠΑΛΛΗΛΟΥ ΛΕΙΤΟΥΡΓΙΕΣ   </h1>
+            <a href="/allApplications" class="btn">ΕΠΙΚΥΡΩΣΗ ΤΩΝ ΑΙΤΗΣΕΩΝ</a>
+        </div>
+
+        <div  sec:authorize="hasAnyRole( 'ROLE_USER_C_Axiomatikos')" >
+            <h1 align="left" >ΑΞΙΩΜΑΤΙΚΟΥ ΛΕΙΤΟΥΡΓΙΕΣ </h1>
+            <a href="/allApplications" class="btn"> ΕΓΚΡΙΣΗ ΤΩΝ ΑΙΤΗΣΕΩΝ</a>
+        </div>
+        <div  sec:authorize="hasAnyRole( 'ROLE_ADMIN')" >
+            <h1 align="left" >ΛΕΙΤΟΥΡΓΙΕΣ ΑΞΙΩΜΑΤΙΚΟΥ KAI ΥΠΑΛΛΗΛΟΥ </h1>
+            <a href="/allApplications" class="btn">ΕΠΙΚΥΡΩΣΗ KAI ΕΓΚΡΙΣΗ </a>
+        </div>
+
+    </div>
+
+</div>
+<div th:if="${#authorization.expression('isAuthenticated()')}">
+    <div class="formInfo">
         <h1> INFO USER </h1>
         <br><br>
         <p align="left">| Logged user: <span sec:authentication="name">  </span> <br><br> Roles:<span sec:authentication="principal.authorities"></span>
