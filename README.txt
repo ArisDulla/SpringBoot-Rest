@@ -2,6 +2,8 @@
  DOCKER
 docker run --name mysqldb -v mysqldbvol:/var/lib/mysql -p 3306:3306 -e MYSQL_USER=hbstudent -e MYSQL_PASSWORD=changeit -e MYSQL_DATABASE=students -e MYSQL_ROOT_PASSWORD=pass123 --rm -d mysql/mysql-server:latest
 
+![plot](./architecture.png)
+
 LOCAL
 http://localhost:8080/
 
