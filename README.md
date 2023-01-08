@@ -4,7 +4,6 @@ docker run --name mysqldb -v mysqldbvol:/var/lib/mysql -p 3306:3306 -e MYSQL_USE
 
 ![Alt text](/architecture.jpg "Project")
 
-
 LOCAL
 http://localhost:8080/
 
